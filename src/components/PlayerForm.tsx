@@ -50,7 +50,6 @@ function PlayerForm({ name, setName, setCanStart }: PostProps) {
         <motion.button
           whileHover={{ scale: 1.2 }}
           className="mt-[3.5vh] mb-[-3vh] bg-[#15291E] py-[1vh] px-[1.8vh] rounded-full text-white font-[Rubik]"
-          onClick={handleStart}
         >
           START MATCH!
         </motion.button>

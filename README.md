@@ -5,8 +5,9 @@ Game plan
 
 **Steps I took**
 
-1. Generated express set-up with socket io for the backend (npx express-generator-typescript --with-auth --socket-io --use-yarn "project name (default is express-gen-ts)") then (npm i socket.io)
+1. Create backend setup
 
-2. Create a socket server
-3. Install socket-controller (npm i socket-controllers reflect-metadata)
-4.
+**Challenges**
+
+1. Setting up the backend
+2. Fixing and adapting with typescript error

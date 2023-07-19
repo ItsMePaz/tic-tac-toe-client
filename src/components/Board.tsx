@@ -25,9 +25,9 @@ function Board() {
               restDelta: 0.001,
             },
           }}
-          className="h-[10vh] bg-[#e9d9e4] w-[10vh] rounded-xl place-self-center "
+          className="h-[10vh] bg-[#e9d9e4] w-[10vh] rounded-xl place-self-center hover:border-[#262730] hover:border-4"
         >
-          x
+          {/* x */}
         </motion.button>
         <motion.button
           initial={{ opacity: 0, scale: 0.5 }}
@@ -43,9 +43,9 @@ function Board() {
               restDelta: 0.001,
             },
           }}
-          className="h-[10vh] bg-[#e9d9e4] w-[10vh] rounded-xl place-self-center"
+          className="h-[10vh] bg-[#e9d9e4] w-[10vh] rounded-xl place-self-center hover:border-[#262730] hover:border-4"
         >
-          <img className="scale-90" src={cancel} alt="" />
+          {/* <img className="scale-90 bg-transparent" src={cancel} alt="" /> */}
         </motion.button>
         <motion.button
           initial={{ opacity: 0, scale: 0.5 }}
@@ -61,9 +61,9 @@ function Board() {
               restDelta: 0.001,
             },
           }}
-          className="h-[10vh] bg-[#e9d9e4] w-[10vh] rounded-xl place-self-center"
+          className="h-[10vh] bg-[#e9d9e4] w-[10vh] rounded-xl place-self-center hover:border-[#262730] hover:border-4"
         >
-          1
+          {/* 1 */}
         </motion.button>
         <motion.button
           initial={{ opacity: 0, scale: 0.5 }}
@@ -79,9 +79,9 @@ function Board() {
               restDelta: 0.001,
             },
           }}
-          className="h-[10vh] bg-[#e9d9e4] w-[10vh] rounded-xl place-self-center"
+          className="h-[10vh] bg-[#e9d9e4] w-[10vh] rounded-xl place-self-center hover:border-[#262730] hover:border-4"
         >
-          1
+          {/* 1 */}
         </motion.button>
         <motion.button
           initial={{ opacity: 0, scale: 0.5 }}
@@ -97,9 +97,9 @@ function Board() {
               restDelta: 0.001,
             },
           }}
-          className="h-[10vh] bg-[#e9d9e4] w-[10vh] rounded-xl place-self-center"
+          className="h-[10vh] bg-[#e9d9e4] w-[10vh] rounded-xl place-self-center hover:border-[#262730] hover:border-4"
         >
-          1
+          {/* 1 */}
         </motion.button>
         <motion.button
           initial={{ opacity: 0, scale: 0.5 }}
@@ -115,9 +115,9 @@ function Board() {
               restDelta: 0.001,
             },
           }}
-          className="h-[10vh] bg-[#e9d9e4] w-[10vh] rounded-xl place-self-center"
+          className="h-[10vh] bg-[#e9d9e4] w-[10vh] rounded-xl place-self-center hover:border-[#262730] hover:border-4"
         >
-          1
+          {/* 1 */}
         </motion.button>
         <motion.button
           initial={{ opacity: 0, scale: 0.5 }}
@@ -133,9 +133,9 @@ function Board() {
               restDelta: 0.001,
             },
           }}
-          className="h-[10vh] bg-[#e9d9e4] w-[10vh] rounded-xl place-self-center"
+          className="h-[10vh] bg-[#e9d9e4] w-[10vh] rounded-xl place-self-center hover:border-[#262730] hover:border-4"
         >
-          1
+          {/* 1 */}
         </motion.button>
         <motion.button
           initial={{ opacity: 0, scale: 0.5 }}
@@ -151,9 +151,9 @@ function Board() {
               restDelta: 0.001,
             },
           }}
-          className="h-[10vh] bg-[#e9d9e4] w-[10vh] rounded-xl place-self-center"
+          className="h-[10vh] bg-[#e9d9e4] w-[10vh] rounded-xl place-self-center hover:border-[#262730] hover:border-4"
         >
-          1
+          {/* 1 */}
         </motion.button>
         <motion.button
           initial={{ opacity: 0, scale: 0.5 }}
@@ -169,9 +169,9 @@ function Board() {
               restDelta: 0.001,
             },
           }}
-          className="h-[10vh] bg-[#e9d9e4] w-[10vh] rounded-xl place-self-center"
+          className="h-[10vh] bg-[#e9d9e4] w-[10vh] rounded-xl place-self-center hover:border-[#262730] hover:border-4"
         >
-          1
+          {/* 1 */}
         </motion.button>
       </div>
     </motion.section>
