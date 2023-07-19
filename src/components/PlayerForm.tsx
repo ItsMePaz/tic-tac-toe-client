@@ -1,6 +1,13 @@
 import { motion } from "framer-motion";
 
-function PlayerForm({ name, setName, canStart, setCanStart }) {
+type PostProps = {
+  name: string;
+  setName: (open: string) => void;
+
+  setCanStart: (open: boolean) => void;
+};
+
+function PlayerForm({ name, setName, setCanStart }: PostProps) {
   function handleStart(e: any) {
     e.preventDefault();
     setCanStart(true);
@@ -38,7 +45,6 @@ function PlayerForm({ name, setName, canStart, setCanStart }) {
           name="name"
           placeholder="Input player name here"
           onChange={(e) => setName(e.target.value)}
-          maxLength="17"
           required
         />
         <motion.button
