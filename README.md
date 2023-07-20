@@ -12,5 +12,15 @@ React.s - TypeScript - TailwindCSS - Framer Motion - Node.js - Express.js - Sock
 **Difiicult Challenges**
 
 1. Setting up the backend
-2. Fixing and adapting with typescript error
+2. Fixing and adapting with typescript errors
 3. Setting up connection to the socket.io server
+
+**Installed Dependencies**
+Fontend:
+npm i socket.io
+npm i socket.io-client
+npm i framer-motion
+
+**Collective Resources**
+
+https://www.youtube.com/watch?v=djMy4QsPWiI (This here helped me understand how to connect socket.io server in the backend to the frontend)

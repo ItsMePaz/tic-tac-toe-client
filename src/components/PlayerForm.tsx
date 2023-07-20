@@ -1,4 +1,7 @@
 import { motion } from "framer-motion";
+import * as io from "socket.io-client";
+
+const socket = io.connect("http://localhost:3001");
 
 type PostProps = {
   name: string;
@@ -8,12 +11,21 @@ type PostProps = {
 };
 
 function PlayerForm({ name, setName, setCanStart }: PostProps) {
-  function handleStart(e: any) {
+  const handleStart = (e: any) => {
     e.preventDefault();
     setCanStart(true);
-    console.log(name);
-  }
 
+    socket.emit("send_message", { name });
+  };
+  /*  useEffect(() => {
+    socket.on("receive_message", (data) => {
+      alert(data.name);
+    });
+  }, [socket]); */
+
+  /*  const sendName = () => {
+socket.emit()
+ } */
   /*  useEffect(() => {
     if (canStart == true) formStart.style.display = "none";
   }, [canStart]); */

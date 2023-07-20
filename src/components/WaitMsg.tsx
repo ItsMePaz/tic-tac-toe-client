@@ -1,7 +1,35 @@
 import loading from "../images/magnifying.gif";
+import * as io from "socket.io-client";
+import { useEffect } from "react";
+const socket = io.connect("http://localhost:3001");
 
-function WaitMsg() {
+type StartProps = {
+  /* playerFound: boolean; */
+  setPlayerFound: (open: boolean) => void;
+  /* enemyPlayerName: string; */
+  setPlayerCount: (open: string[]) => void;
+  playerCount: string[];
+  setEnemyPlayerName: (open: string) => void;
+};
+
+function WaitMsg({
+  setPlayerFound,
+  setEnemyPlayerName,
+  playerCount,
+  setPlayerCount,
+}: StartProps) {
   //Place here a side effect than hides this component when there is a second player
+  useEffect(() => {
+    socket.on("receive_message", (data) => {
+      let name: string = data.name;
+      setEnemyPlayerName(name);
+      setPlayerCount([...playerCount, name]);
+      if (playerCount.length > 1) {
+        setPlayerFound(true);
+      }
+      console.log(playerCount);
+    });
+  }, [socket]);
   return (
     <div>
       {" "}
