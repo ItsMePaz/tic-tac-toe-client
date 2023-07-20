@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import cancel from "../images/cancel.png";
 
 function Board() {
   return (
