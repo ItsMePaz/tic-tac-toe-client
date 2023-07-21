@@ -13,9 +13,10 @@ type PostProps = {
 function PlayerForm({ name, setName, setCanStart }: PostProps) {
   const handleStart = (e: any) => {
     e.preventDefault();
+
     setCanStart(true);
 
-    socket.emit("send_message", { name });
+    socket.emit("send_name", { name });
   };
   /*  useEffect(() => {
     socket.on("receive_message", (data) => {

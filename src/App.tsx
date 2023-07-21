@@ -19,15 +19,17 @@ function App() {
       {!canStart ? (
         <PlayerForm name={name} setName={setName} setCanStart={setCanStart} />
       ) : null}
-      {canStart ? (
+      {playerFound ? (
         <GameStatus enemyPlayerName={enemyPlayerName} name={name} />
       ) : null}
       {playerFound ? <Board /> : null}
       {canStart ? (
         <WaitMsg
+          enemyPlayerName={enemyPlayerName}
           setPlayerFound={setPlayerFound}
           setEnemyPlayerName={setEnemyPlayerName}
           playerCount={playerCount}
+          playerFound={playerFound}
           setPlayerCount={setPlayerCount}
         />
       ) : null}

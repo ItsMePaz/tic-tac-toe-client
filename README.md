@@ -24,3 +24,4 @@ npm i framer-motion
 **Collective Resources**
 
 https://www.youtube.com/watch?v=djMy4QsPWiI (This here helped me understand how to connect socket.io server in the backend to the frontend)
+

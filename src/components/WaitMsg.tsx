@@ -4,31 +4,60 @@ import { useEffect } from "react";
 const socket = io.connect("http://localhost:3001");
 
 type StartProps = {
-  /* playerFound: boolean; */
+  playerFound: boolean;
   setPlayerFound: (open: boolean) => void;
-  /* enemyPlayerName: string; */
+  enemyPlayerName: string;
   setPlayerCount: (open: string[]) => void;
   playerCount: string[];
+
   setEnemyPlayerName: (open: string) => void;
+  /* obj: object; */
 };
 
 function WaitMsg({
   setPlayerFound,
   setEnemyPlayerName,
+}: /*  setEnemyPlayerName,
+  enemyPlayerName, */
+/* setEnemyPlayerName,
   playerCount,
-  setPlayerCount,
-}: StartProps) {
+  setPlayerCount, */
+StartProps) {
   //Place here a side effect than hides this component when there is a second player
   useEffect(() => {
-    socket.on("receive_message", (data) => {
-      let name: string = data.name;
+    socket.on("send_name", (e) => {
+      let allPlayersArray = e.allPlayers;
+      let nameArray = e.nameArray;
+      console.log(allPlayersArray);
+      if (nameArray.length >= 2) {
+        setPlayerFound(true);
+        setEnemyPlayerName(nameArray[1]);
+      }
+
+      /* let enemyName;
+      let playerValue;
+      const foundObj = allPlayersArray.find(
+        (obj: any) =>
+          obj.p1.player1Name == `${name}` || obj.p2.player2Name == `${name}`
+      );
+      foundObj.p1.player1Name = `${name}`
+        ? (enemyName = foundObj.p2.player2Name)
+        : (enemyName = foundObj.p1.player1Name);
+      foundObj.p1.player1Value = `${name}`
+        ? (playerValue = foundObj.p2.player2Value)
+        : (playerValue = foundObj.p1.player1Value);
+      setEnemyPlayerName(enemyName);
+      console.log(playerValue);
+      setPlayerFound(true); */
+      /*   let name: string = data.name;
       setEnemyPlayerName(name);
       setPlayerCount([...playerCount, name]);
       if (playerCount.length > 1) {
         setPlayerFound(true);
       }
-      console.log(playerCount);
+      console.log(playerCount); */
     });
+    console.log("playerFound");
   }, [socket]);
   return (
     <div>
