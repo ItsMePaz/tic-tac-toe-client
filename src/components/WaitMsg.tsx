@@ -9,7 +9,7 @@ type StartProps = {
   enemyPlayerName: string;
   setPlayerCount: (open: string[]) => void;
   playerCount: string[];
-
+  name: string;
   setEnemyPlayerName: (open: string) => void;
   /* obj: object; */
 };
@@ -17,6 +17,7 @@ type StartProps = {
 function WaitMsg({
   setPlayerFound,
   setEnemyPlayerName,
+  name,
 }: /*  setEnemyPlayerName,
   enemyPlayerName, */
 /* setEnemyPlayerName,
@@ -31,7 +32,16 @@ StartProps) {
       console.log(allPlayersArray);
       if (nameArray.length >= 2) {
         setPlayerFound(true);
-        setEnemyPlayerName(nameArray[1]);
+
+        let onScreenPlayer = nameArray.filter(
+          (player: string) => player == name
+        );
+        let enemyPlayer = nameArray.filter((player: string) => player !== name);
+        console.log(`you are ${onScreenPlayer}`);
+        console.log(`you are against ${enemyPlayer}`);
+        console.log(nameArray);
+        setEnemyPlayerName(enemyPlayer);
+        /* setUserList(userList.filter((user) => user.id !== id)); */
       }
 
       /* let enemyName;

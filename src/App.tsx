@@ -4,6 +4,7 @@ import Title from "./components/Title";
 import Board from "./components/Board";
 import WaitMsg from "./components/WaitMsg";
 import GameStatus from "./components/GameStatus";
+import GameSet from "./components/GameSet";
 import { useState } from "react";
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
   const [playerFound, setPlayerFound] = useState<boolean>(false);
   const [enemyPlayerName, setEnemyPlayerName] = useState<string>("");
   const [playerCount, setPlayerCount] = useState<string[]>([]);
+  const [hideStatus, setHideStatus] = useState<boolean>(true);
 
   return (
     <div>
@@ -19,8 +21,13 @@ function App() {
       {!canStart ? (
         <PlayerForm name={name} setName={setName} setCanStart={setCanStart} />
       ) : null}
-      {playerFound ? (
-        <GameStatus enemyPlayerName={enemyPlayerName} name={name} />
+      {playerFound && hideStatus ? (
+        <GameStatus
+          enemyPlayerName={enemyPlayerName}
+          name={name}
+          setHideStatus={setHideStatus}
+          hideStatus={hideStatus}
+        />
       ) : null}
       {playerFound ? <Board /> : null}
       {canStart ? (
@@ -31,8 +38,10 @@ function App() {
           playerCount={playerCount}
           playerFound={playerFound}
           setPlayerCount={setPlayerCount}
+          name={name}
         />
       ) : null}
+      {playerFound ? <GameSet /> : null}
     </div>
   );
 }
