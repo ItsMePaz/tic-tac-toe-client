@@ -11,12 +11,16 @@ type StartProps = {
   playerCount: string[];
   name: string;
   setEnemyPlayerName: (open: string) => void;
+  setPlayerValue: (open: string) => void;
+  setEnemyValue: (open: string) => void;
   /* obj: object; */
 };
 
 function WaitMsg({
   setPlayerFound,
   setEnemyPlayerName,
+  setPlayerValue,
+  setEnemyValue,
   name,
 }: /*  setEnemyPlayerName,
   enemyPlayerName, */
@@ -27,36 +31,65 @@ StartProps) {
   //Place here a side effect than hides this component when there is a second player
   useEffect(() => {
     socket.on("send_name", (e) => {
-      let allPlayersArray = e.allPlayers;
+      let allPlayersArray = e.allPlayers.slice(-1);
       let nameArray = e.nameArray;
-      console.log(allPlayersArray);
+      console.log(allPlayersArray[0].p1 /* .p1 */);
       if (nameArray.length >= 2) {
         setPlayerFound(true);
 
-        let onScreenPlayer = nameArray.filter(
-          (player: string) => player == name
+        console.log(allPlayersArray);
+        const playerObj = allPlayersArray.find(
+          (obj: any) => obj.p1.player1Name == name || obj.p2.player2Name == name
         );
-        let enemyPlayer = nameArray.filter((player: string) => player !== name);
-        console.log(`you are ${onScreenPlayer}`);
-        console.log(`you are against ${enemyPlayer}`);
+        console.log(playerObj.p1.player1Name);
+        {
+          playerObj.p1.player1Name == name
+            ? setEnemyPlayerName(playerObj.p2.player2Name)
+            : setEnemyPlayerName(playerObj.p1.player1Name);
+        }
+        {
+          //Current Problem Here
+          playerObj.p1.player1Value = name
+            ? setPlayerValue(playerObj.p1.player2Value)
+            : setPlayerValue(playerObj.p1.player1Value);
+
+          playerObj.p2.playerValue = name
+            ? setEnemyValue(playerObj.p1.player1Value)
+            : setEnemyValue(playerObj.p2.player1Value);
+        }
+        /*   let onScreenPlayer = allPlayersArray.find((obj: any) => {
+          obj.p1.player1Name == `${name}` || obj.p2.player2Name == `${name}`;
+        }); */
+
+        /*   let onScreenPlayer = nameArray.filter(
+          (player: string) => player == name
+        ); */
+        /*         let enemyPlayer = nameArray.filter((player: string) => player !== name);
+         */
+        /* let enemyPlayer = allPlayersArray.find((obj: any) => {
+          obj.p1.player1Name !== `${name}` || obj.p2.player2Name !== `${name}`;
+        }); */
+
+        /* console.log(`you are ${onScreenPlayer}`); */
+        /* console.log(`you are against ${enemyPlayer}`); */
         console.log(nameArray);
-        setEnemyPlayerName(enemyPlayer);
+        /*   setEnemyPlayerName(enemyPlayer); */
         /* setUserList(userList.filter((user) => user.id !== id)); */
       }
 
-      /* let enemyName;
+      /* let enemyPlayer;
       let playerValue;
-      const foundObj = allPlayersArray.find(
+      const playerObj = allPlayersArray.find(
         (obj: any) =>
           obj.p1.player1Name == `${name}` || obj.p2.player2Name == `${name}`
       );
-      foundObj.p1.player1Name = `${name}`
-        ? (enemyName = foundObj.p2.player2Name)
-        : (enemyName = foundObj.p1.player1Name);
-      foundObj.p1.player1Value = `${name}`
-        ? (playerValue = foundObj.p2.player2Value)
-        : (playerValue = foundObj.p1.player1Value);
-      setEnemyPlayerName(enemyName);
+      playerObj.p1.player1Name = `${name}`
+        ? (enemyPlayer = playerObj.p2.player2Name)
+        : (enemyPlayer = playerObj.p1.player1Name);
+      playerObj.p1.player1Value = `${name}`
+        ? (playerValue = playerObj.p2.player2Value)
+        : (playerValue = playerObj.p1.player1Value);
+      setEnemyPlayerName(enemyPlayer);
       console.log(playerValue);
       setPlayerFound(true); */
       /*   let name: string = data.name;

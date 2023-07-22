@@ -14,9 +14,18 @@ function App() {
   const [enemyPlayerName, setEnemyPlayerName] = useState<string>("");
   const [playerCount, setPlayerCount] = useState<string[]>([]);
   const [hideStatus, setHideStatus] = useState<boolean>(true);
-
+  const [enemyValue, setEnemyValue] = useState<string>("");
+  const [playerValue, setPlayerValue] = useState<string>("");
   return (
     <div>
+      {!hideStatus ? (
+        <GameSet
+          enemyPlayerName={enemyPlayerName}
+          name={name}
+          enemyValue={enemyValue}
+          playerValue={playerValue}
+        />
+      ) : null}
       {!canStart ? <Title /> : null}
       {!canStart ? (
         <PlayerForm name={name} setName={setName} setCanStart={setCanStart} />
@@ -39,9 +48,10 @@ function App() {
           playerFound={playerFound}
           setPlayerCount={setPlayerCount}
           name={name}
+          setPlayerValue={setPlayerValue}
+          setEnemyValue={setEnemyValue}
         />
       ) : null}
-      {playerFound ? <GameSet /> : null}
     </div>
   );
 }
