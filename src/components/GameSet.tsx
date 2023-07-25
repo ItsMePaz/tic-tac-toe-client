@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-/* import { useEffect } from "react"; */
+import { useEffect } from "react";
 
 type NameProp = {
   enemyPlayerName: string;
@@ -9,6 +9,9 @@ type NameProp = {
 };
 
 function GameSet({ enemyPlayerName, name, playerValue, enemyValue }: NameProp) {
+  useEffect(() => {
+    console.log(playerValue, enemyValue);
+  });
   return (
     <motion.div
       transition={{ delay: 0.4 }}

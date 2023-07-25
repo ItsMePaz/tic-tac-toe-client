@@ -49,13 +49,13 @@ StartProps) {
         }
         {
           //Current Problem Here
-          playerObj.p1.player1Value = name
-            ? setPlayerValue(playerObj.p1.player2Value)
-            : setPlayerValue(playerObj.p1.player1Value);
+          playerObj.p1.player1Name == name
+            ? setPlayerValue(playerObj.p1.player1Value)
+            : setPlayerValue(playerObj.p2.player2Value);
 
-          playerObj.p2.playerValue = name
-            ? setEnemyValue(playerObj.p1.player1Value)
-            : setEnemyValue(playerObj.p2.player1Value);
+          playerObj.p2.player2Name !== name
+            ? setEnemyValue(playerObj.p2.player2Value)
+            : setEnemyValue(playerObj.p1.player1Value);
         }
         /*   let onScreenPlayer = allPlayersArray.find((obj: any) => {
           obj.p1.player1Name == `${name}` || obj.p2.player2Name == `${name}`;
