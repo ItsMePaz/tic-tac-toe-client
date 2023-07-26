@@ -14,6 +14,10 @@ type StartProps = {
   setPlayerValue: (open: string) => void;
   setEnemyValue: (open: string) => void;
   /* obj: object; */
+  setPlayer1Object: (open: object[]) => void;
+  setPlayer2Object: (open: object[]) => void;
+  player1Object: object[];
+  player2Object: object[];
 };
 
 function WaitMsg({
@@ -22,6 +26,8 @@ function WaitMsg({
   setPlayerValue,
   setEnemyValue,
   name,
+  setPlayer1Object,
+  setPlayer2Object,
 }: /*  setEnemyPlayerName,
   enemyPlayerName, */
 /* setEnemyPlayerName,
@@ -41,6 +47,8 @@ StartProps) {
         const playerObj = allPlayersArray.find(
           (obj: any) => obj.p1.player1Name == name || obj.p2.player2Name == name
         );
+        setPlayer1Object(playerObj);
+        setPlayer2Object(playerObj);
         console.log(playerObj.p1.player1Name);
         {
           playerObj.p1.player1Name == name

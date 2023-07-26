@@ -16,6 +16,8 @@ function App() {
   const [hideStatus, setHideStatus] = useState<boolean>(true);
   const [enemyValue, setEnemyValue] = useState<string>("");
   const [playerValue, setPlayerValue] = useState<string>("");
+  const [player1Object, setPlayer1Object] = useState<object[]>([]);
+  const [player2Object, setPlayer2Object] = useState<object[]>([]);
   return (
     <div>
       {!hideStatus ? (
@@ -38,7 +40,16 @@ function App() {
           hideStatus={hideStatus}
         />
       ) : null}
-      {playerFound ? <Board /> : null}
+      {playerFound ? (
+        <Board
+          name={name}
+          enemyPlayerName={enemyPlayerName}
+          playerValue={playerValue}
+          enemyValue={enemyValue}
+          player1Object={player1Object}
+          player2Object={player2Object}
+        />
+      ) : null}
       {canStart ? (
         <WaitMsg
           enemyPlayerName={enemyPlayerName}
@@ -50,6 +61,10 @@ function App() {
           name={name}
           setPlayerValue={setPlayerValue}
           setEnemyValue={setEnemyValue}
+          player1Object={player1Object}
+          player2Object={player2Object}
+          setPlayer1Object={setPlayer1Object}
+          setPlayer2Object={setPlayer2Object}
         />
       ) : null}
     </div>

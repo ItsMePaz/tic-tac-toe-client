@@ -1,6 +1,53 @@
 import { motion } from "framer-motion";
+/* import { useState, useEffect } from "react"; */
+/* const socket = io.connect("http://localhost:3001");
+import * as io from "socket.io-client"; */
+type PlayerName = {
+  enemyPlayerName: string;
+  name: string;
+  playerValue: string;
+  enemyValue: string;
+  player1Object: object[];
+  player2Object: object[];
 
-function Board() {
+  /*  setPlayer1ObjectAgain: (open: object[]) => void;
+  player1ObjectAgain: object[]; */
+};
+/* type BoardButton = {}; */
+function Board({
+  name,
+  enemyPlayerName,
+  player1Object,
+  player2Object,
+}: PlayerName) {
+  /*   const [player1ObjectAgain, setPlayer1ObjectAgain] = useState<object[]>([]);
+   */ /* const [button1, setButton1] = useState<string>(""); */
+  /* const [button2, setButton2] = useState<string>(""); */
+  /*  const [button3, setButton3] = useState<string>(""); */
+  /* const [button4, setButton4] = useState<string>(""); */
+  /* const [button5, setButton5] = useState<string>(""); */
+  /* const [button6, setButton6] = useState<string>(""); */
+  /* const [button7, setButton7] = useState<string>(""); */
+  /* const [button8, setButton8] = useState<string>(""); */
+  /* const [button9, setButton9] = useState<string>(""); */
+  const handleButton1 = () => {
+    console.log(name, enemyPlayerName);
+    console.log(player1Object, player2Object);
+    /*     let player1Names = player1Object.player1Name; */
+    console.log(player2Object.p1.player1Name);
+  };
+  /*   useEffect(() => {
+    socket.on("send_name", (e) => {
+      let allPlayersArray = e.allPlayers.slice(-1);
+      let nameArray = e.nameArray;
+      if (nameArray.length >= 2) {
+        const playerObj = allPlayersArray.find(
+          (obj: any) => obj.p1.player1Name == name || obj.p2.player2Name == name
+        );
+        console.log(`hey ${playerObj.p1.player1Name}`);
+      }
+    });
+  }, [socket]); */
   return (
     <motion.section
       transition={{ delay: 0.3 }}
@@ -24,6 +71,7 @@ function Board() {
               restDelta: 0.001,
             },
           }}
+          onClick={handleButton1}
           className="h-[10vh] bg-[#e9d9e4] w-[10vh] rounded-xl place-self-center hover:border-[#262730] hover:border-4"
         >
           {/* x */}
