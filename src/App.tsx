@@ -16,8 +16,7 @@ function App() {
   const [hideStatus, setHideStatus] = useState<boolean>(true);
   const [enemyValue, setEnemyValue] = useState<string>("");
   const [playerValue, setPlayerValue] = useState<string>("");
-  const [player1Object, setPlayer1Object] = useState<object[]>([]);
-  const [player2Object, setPlayer2Object] = useState<object[]>([]);
+  const [playerObject, setPlayerObject] = useState<object[]>([]);
   return (
     <div>
       {!hideStatus ? (
@@ -46,8 +45,7 @@ function App() {
           enemyPlayerName={enemyPlayerName}
           playerValue={playerValue}
           enemyValue={enemyValue}
-          player1Object={player1Object}
-          player2Object={player2Object}
+          playerObject={playerObject}
         />
       ) : null}
       {canStart ? (
@@ -61,10 +59,8 @@ function App() {
           name={name}
           setPlayerValue={setPlayerValue}
           setEnemyValue={setEnemyValue}
-          player1Object={player1Object}
-          player2Object={player2Object}
-          setPlayer1Object={setPlayer1Object}
-          setPlayer2Object={setPlayer2Object}
+          playerObject={playerObject}
+          setPlayerObject={setPlayerObject}
         />
       ) : null}
     </div>
