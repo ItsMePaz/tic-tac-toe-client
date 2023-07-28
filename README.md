@@ -12,7 +12,7 @@ React.js - TypeScript - TailwindCSS - Framer Motion - Node.js - Express.js - Soc
 4. Devise a program, that is a side effect, that knows who the screen player and the enemy player is.
 5. Make the buttons in the Board respond in a way that is suppose to respond. For example, if player1 presses the button, show "X" on the button and disable the specific button.
 6. Append updated button values of both players and disable those buttons with values
-7. Devise an algorithm that determines the winning combination
+7. Devise an algorithm that determines the winning combination and create its code
 
 **Difiicult Challenges/Blockers**
 
@@ -22,6 +22,7 @@ React.js - TypeScript - TailwindCSS - Framer Motion - Node.js - Express.js - Soc
 4. Setting up connection to the socket.io server
 5. Reading and manipulating objects emitted and received on the socket
 6. Pushing the value of the button clicked into the pattern array - which is repeatedly checked by the algotithm to see if the player had one.
+7. Changed values of a button by a player gets removed when another button changes its value
 
 **Installed Dependencies**
 Fontend:
