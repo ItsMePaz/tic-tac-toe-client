@@ -8,6 +8,7 @@ type PlayerName = {
   playerValue: string;
   enemyValue: string;
   playerObject: object[];
+  playerTurnName: string;
   /*   playerPattern: string[];
   setPlayerPattern: (open: string[]) => void; */
 
@@ -15,10 +16,17 @@ type PlayerName = {
   playerObjectAgain: object[]; */
 };
 /* type BoardButton = {}; */
-function Board({ name, enemyPlayerName, playerObject }: PlayerName) {
+function Board({
+  name,
+  enemyPlayerName,
+  playerObject,
+  playerTurnName,
+}: PlayerName) {
   /*   const [playerObjectAgain, setplayerObjectAgain] = useState<object[]>([]);*/
   /*   const [buttonObject, setButtonObject] = useState<object[]>([]);
-   */ const [playerPattern, setPlayerPattern] = useState<string[]>([]);
+   */
+  const [isPlayerTurn, setIsPlayerTurn] = useState<boolean>(false);
+  const [playerPattern, setPlayerPattern] = useState<string[]>([]);
   const [button1State, setButton1State] = useState<boolean>(false);
   const [button2State, setButton2State] = useState<boolean>(false);
   const [button3State, setButton3State] = useState<boolean>(false);
@@ -39,32 +47,57 @@ function Board({ name, enemyPlayerName, playerObject }: PlayerName) {
   const [button7, setButton7] = useState<string>("");
   const [button8, setButton8] = useState<string>("");
   const [button9, setButton9] = useState<string>("");
+  const [turnSignal, setTurnSignal] = useState<boolean>(true);
+  /* const [hey, setHey] = useState<string>(""); */
+
   useEffect(() => {
-    socket.emit("values", { button1, button1State });
+    if (playerPattern.length < 1) {
+      playerTurnName == name ? setIsPlayerTurn(false) : setIsPlayerTurn(true);
+    }
+  }, [socket]);
+
+  useEffect(() => {
+    socket.on("turn_signal", (e) => {
+      let signalObj = e.signalObj;
+      console.log(signalObj.turnSignal);
+      if (signalObj.turnSignal == false) {
+        setIsPlayerTurn(false);
+      }
+    });
+  }, [button1]);
+
+  /*   useEffect(() => {
+    setIsPlayerTurn(!isPlayerTurn);
+  }, [hey]); */
+  useEffect(() => {
+    socket.emit("turn_signal", { turnSignal });
   }, [button1]);
   useEffect(() => {
-    socket.emit("values", { button2, button2State });
+    socket.emit("button1", { button1, button1State });
+  }, [button1]);
+  useEffect(() => {
+    socket.emit("button2", { button2, button2State });
   }, [button2]);
   useEffect(() => {
-    socket.emit("values", { button3, button3State });
+    socket.emit("button3", { button3, button3State });
   }, [button3]);
   useEffect(() => {
-    socket.emit("values", { button4, button4State });
+    socket.emit("button4", { button4, button4State });
   }, [button4]);
   useEffect(() => {
-    socket.emit("values", { button5, button5State });
+    socket.emit("button5", { button5, button5State });
   }, [button5]);
   useEffect(() => {
-    socket.emit("values", { button6, button6State });
+    socket.emit("button6", { button6, button6State });
   }, [button6]);
   useEffect(() => {
-    socket.emit("values", { button7, button7State });
+    socket.emit("button7", { button7, button7State });
   }, [button7]);
   useEffect(() => {
-    socket.emit("values", { button8, button8State });
+    socket.emit("button8", { button8, button8State });
   }, [button8]);
   useEffect(() => {
-    socket.emit("values", { button9, button9State });
+    socket.emit("button9", { button9, button9State });
   }, [button9]);
   useEffect(() => {
     console.log(playerPattern);
@@ -81,6 +114,8 @@ function Board({ name, enemyPlayerName, playerObject }: PlayerName) {
       : setButton1(playerObj.p2.player2Value);
     setPlayerPattern([...playerPattern, "A"]);
     setButton1State(true);
+    /*  setHey("hey"); */
+    setTurnSignal(false);
   };
 
   const handleButton2 = () => {
@@ -228,68 +263,99 @@ function Board({ name, enemyPlayerName, playerObject }: PlayerName) {
     });
   }, [socket]); */
   useEffect(() => {
-    socket.on("values", (e) => {
+    socket.on("button1", (e) => {
       let buttonObject = e.buttonObj;
       setButton1(buttonObject.b1);
       setButton1State(buttonObject.b1Status);
     });
   }, [button1]);
   useEffect(() => {
-    socket.on("values", (e) => {
+    socket.on("button2", (e) => {
       let buttonObject = e.buttonObj;
       setButton2(buttonObject.b2);
       setButton2State(buttonObject.b2Status);
     });
   }, [button2]);
   useEffect(() => {
-    socket.on("values", (e) => {
+    socket.on("button3", (e) => {
       let buttonObject = e.buttonObj;
       setButton3(buttonObject.b3);
       setButton3State(buttonObject.b3Status);
     });
-  }, [button3State]);
+  }, [button3]);
   useEffect(() => {
-    socket.on("values", (e) => {
+    socket.on("button4", (e) => {
       let buttonObject = e.buttonObj;
       setButton4(buttonObject.b4);
       setButton4State(buttonObject.b4Status);
     });
   }, [button4]);
   useEffect(() => {
-    socket.on("values", (e) => {
+    socket.on("button5", (e) => {
       let buttonObject = e.buttonObj;
       setButton5(buttonObject.b5);
       setButton5State(buttonObject.b5Status);
     });
   }, [button5]);
   useEffect(() => {
-    socket.on("values", (e) => {
+    socket.on("button6", (e) => {
       let buttonObject = e.buttonObj;
       setButton6(buttonObject.b6);
       setButton6State(buttonObject.b6Status);
     });
   }, [button6]);
   useEffect(() => {
-    socket.on("values", (e) => {
+    socket.on("button7", (e) => {
       let buttonObject = e.buttonObj;
       setButton7(buttonObject.b7);
       setButton7State(buttonObject.b7Status);
     });
   }, [button7]);
   useEffect(() => {
-    socket.on("values", (e) => {
+    socket.on("button8", (e) => {
       let buttonObject = e.buttonObj;
       setButton8(buttonObject.b8);
       setButton8State(buttonObject.b8Status);
     });
   }, [button8]);
   useEffect(() => {
-    socket.on("values", (e) => {
+    socket.on("button9", (e) => {
       let buttonObject = e.buttonObj;
       setButton9(buttonObject.b9);
       setButton9State(buttonObject.b9Status);
     });
   }, [button9]);
+
+  useEffect(() => {
+    let isHorizontal =
+      playerPattern.some((letter: string) => letter == "A" ?? "D" ?? "G") &&
+      playerPattern.some((letter: string) => letter == "B" ?? "E" ?? "H") &&
+      playerPattern.some((letter: string) => letter == "C" ?? "F" ?? "I");
+
+    console.log(`Horizontal ${isHorizontal}`);
+
+    let isVertical =
+      playerPattern.some((letter: string) => letter == "A" ?? "B" ?? "C") &&
+      playerPattern.some((letter: string) => letter == "D" ?? "E" ?? "F") &&
+      playerPattern.some((letter: string) => letter == "G" ?? "H" ?? "I");
+
+    console.log(`Vertical ${isVertical}`);
+
+    let isDiagonal =
+      playerPattern.some((letter: string) => letter == "A" ?? "G") &&
+      playerPattern.some((letter: string) => letter == "E") &&
+      playerPattern.some((letter: string) => letter == "I" ?? "C");
+
+    if (isHorizontal == true) {
+      console.log(`${name} won!`);
+    } else if (isVertical == true) {
+      console.log(`${name} won!`);
+    } else if (isDiagonal == true) {
+      console.log(`${name} won!`);
+    } else {
+      console.log(`${name} did not win`);
+    }
+  }, [playerPattern]);
   return (
     <motion.section
       transition={{ delay: 0.3 }}
@@ -297,7 +363,11 @@ function Board({ name, enemyPlayerName, playerObject }: PlayerName) {
       animate={{ y: "0" }}
       className="flex justify-center items-center h-screen z-0 "
     >
-      {" "}
+      {isPlayerTurn ? (
+        <section className="fixed z-50 h-[40vh] w-[40vh] bg-white opacity-10 p-[2vh] rounded-2xl">
+          Enemy's Turn
+        </section>
+      ) : null}
       <div className="grid grid-rows-3 grid-cols-3 bg-[#D33F49] p-[2vh] w-[40vh] h-[40vh] rounded-2xl">
         {/* button1 */}{" "}
         <motion.button

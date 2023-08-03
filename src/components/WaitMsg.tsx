@@ -15,7 +15,7 @@ type StartProps = {
   setEnemyValue: (open: string) => void;
   /* obj: object; */
   setPlayerObject: (open: object[]) => void;
-
+  setPlayerTurnName: (open: string) => void;
   playerObject: object[];
 };
 
@@ -26,6 +26,7 @@ function WaitMsg({
   setEnemyValue,
   name,
   setPlayerObject,
+  setPlayerTurnName,
 }: /*  setEnemyPlayerName,
   enemyPlayerName, */
 /* setEnemyPlayerName,
@@ -47,14 +48,13 @@ StartProps) {
         );
         setPlayerObject(allPlayersArray);
 
-        console.log(playerObj.p1.player1Name);
+        setPlayerTurnName(playerObj.p1.player1Name);
         {
           playerObj.p1.player1Name == name
             ? setEnemyPlayerName(playerObj.p2.player2Name)
             : setEnemyPlayerName(playerObj.p1.player1Name);
         }
         {
-          //Current Problem Here
           playerObj.p1.player1Name == name
             ? setPlayerValue(playerObj.p1.player1Value)
             : setPlayerValue(playerObj.p2.player2Value);

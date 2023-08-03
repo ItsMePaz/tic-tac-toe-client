@@ -17,6 +17,7 @@ function App() {
   const [enemyValue, setEnemyValue] = useState<string>("");
   const [playerValue, setPlayerValue] = useState<string>("");
   const [playerObject, setPlayerObject] = useState<object[]>([]);
+  const [playerTurnName, setPlayerTurnName] = useState<string>("");
   return (
     <div>
       {!hideStatus ? (
@@ -41,6 +42,7 @@ function App() {
       ) : null}
       {playerFound ? (
         <Board
+          playerTurnName={playerTurnName}
           name={name}
           enemyPlayerName={enemyPlayerName}
           playerValue={playerValue}
@@ -61,6 +63,7 @@ function App() {
           setEnemyValue={setEnemyValue}
           playerObject={playerObject}
           setPlayerObject={setPlayerObject}
+          setPlayerTurnName={setPlayerTurnName}
         />
       ) : null}
     </div>
